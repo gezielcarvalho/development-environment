@@ -1,5 +1,5 @@
-# Container para Laravel
-
+# Container com Laravel 8
+ 
 Container padrão pra executar as atividades de desenvolvimento do **sabre**.
 
 ## Procedimentos com docker 
@@ -11,56 +11,23 @@ docker compose up -d --build
 ### Verificar se os containers estão rodando
 docker ps
 
-## Instalar laravel
+### Instalar dependências
 
-Para criar um projeto Laravel, remova a pasta *www* (rm -fR www), em seguida, use o comando abaixo.
+**Acesse o bash do container <INSTALL_DIR>_php_1**
 
-composer create-project laravel/laravel www
+docker exec -it <INSTALL_DIR>_php_1 bash
 
-### Caso queira deixar o instalador do Laravel em seu sistema, 
+**Execute a instalação das dependências com o composer**
 
-composer global require laravel/installer
+composer install
 
-laravel new www
+**Execute a instalação das dependências com o node e compile**
 
-### Configurar informações de banco de dados no .env
+npm install
+npm run dev
 
-Após instalar o laravel, definir as variáveis de ambiente para acesso ao container de BD
+### Concluir configurações do Laravel
 
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=A_1234567
-
-### Criar o banco de dados
-
-Acessar http://localhost:8080, onde está instalado o phpmyadmin, e criar o BD com o nome laravel ou outro que tiver escolhido.
-
-## Simplificar controller nas rotas.
-
-### Acessar 
-\www\app\Providers\RouteServiceProvider.php
-
-### descomentar a linha abaixo.
-protected $namespace = 'App\\Http\\Controllers';
-
-
-
-Para instalar o nodejs, substitua 10.x abaixo pela última versão estável
-
-cd ~
-curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
-sudo bash nodesource_setup.sh
-sudo apt-get install -y nodejs
-
-Problema de verificação e certificado SSL
-
-git config --global http.sslVerify false
-
-Referências:
-
-1. [link to Instalação do Laravel 8] (https://laravel.com/docs/8.x/installation)
-2. https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04-pt
-3. https://confluence.atlassian.com/fishkb/unable-to-clone-git-repository-due-to-self-signed-certificate-376838977.html
+cp .env.example .env
+php artisan key:generate
+php artinsa migrate
