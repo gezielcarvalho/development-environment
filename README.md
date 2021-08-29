@@ -9,6 +9,7 @@ Container padrão pra executar as atividades de desenvolvimento do **sabre**.
 docker compose up -d --build
 
 ### Verificar se os containers estão rodando
+
 docker ps
 
 ### Instalar dependências
@@ -24,10 +25,13 @@ composer install
 **Execute a instalação das dependências com o node e compile**
 
 npm install
+
 npm run dev
 
 ### Concluir configurações do Laravel
 
 cp .env.example .env
+
 php artisan key:generate
-php artinsa migrate
+
+php artinan migrate
