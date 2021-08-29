@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  php:
+    build: .
+    ports: 
+      - "8000:80"
+    volumes: 
+      - ./www:/var/www/html
+
+  db:
+    build: .docker/mysql
+    restart: always
+    volumes:
+      - "./.docker/dbdata:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: A_1234567
+      MYSQL_DATABASE: sabre_data
+
+  phpmyadmin: 
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
