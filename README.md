@@ -35,3 +35,7 @@ cp .env.example .env
 php artisan key:generate
 
 php artinan migrate
+
+### Em ambiente Linux (tomara) ajuste as permissões de storage
+
+chmod -R 777 storage
