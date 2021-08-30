@@ -34,7 +34,7 @@ cp .env.example .env
 
 php artisan key:generate
 
-php artinan migrate
+php artisan migrate
 
 ### Em ambiente Linux (tomara) ajuste as permissões de storage
 
