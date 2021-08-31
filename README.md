@@ -38,4 +38,4 @@ php artisan migrate
 
 ### Em ambiente Linux (tomara) ajuste as permissões de storage
 
-chmod -R 777 storage
+chmod -R 775 storage
