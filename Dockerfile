@@ -21,3 +21,5 @@ RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-avail
 RUN a2enmod rewrite 
 
 RUN service apache2 restart
+
+RUN usermod -u 1000 www-data

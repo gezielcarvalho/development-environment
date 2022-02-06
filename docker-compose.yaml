@@ -4,6 +4,7 @@ services:
 
   php:
     build: .
+    container_name: app
     ports: 
       - "8000:80"
     volumes: 
@@ -11,6 +12,7 @@ services:
 
   db:
     build: .docker/mysql
+    container_name: db
     restart: always
     volumes:
       - "./.docker/dbdata:/var/lib/mysql"
@@ -20,6 +22,7 @@ services:
 
   phpmyadmin: 
     image: phpmyadmin
+    container_name: myadmin
     restart: always
     ports:
       - 8080:80
