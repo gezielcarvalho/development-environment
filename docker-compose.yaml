@@ -10,6 +10,14 @@ services:
     volumes: 
       - ./www:/var/www/html
 
+  web:
+    build: .docker/react
+    container_name: web
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./react:/var/www/html
+
   db:
     build: .docker/mysql
     container_name: db

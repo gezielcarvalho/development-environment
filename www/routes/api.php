@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\AirlineController;
+//use App\Http\Controllers\AirlineController;
 
 Route::resource('airlines',AirlineController::class);
 

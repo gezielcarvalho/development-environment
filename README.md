@@ -39,3 +39,9 @@ php artisan migrate
 ### Em ambiente Linux (tomara) ajuste as permissões de storage
 
 chmod -R 775 storage
+
+# Vue
+https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/
+
+# React
+https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs
