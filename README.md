@@ -38,9 +38,13 @@ php artisan key:generate
 php artisan migrate
 php artisan seed
 
-### Em ambiente Linux (tomara) ajuste as permissões de storage
+### User and permission settings
 
 chmod -R 777 storage
+
+After creating files with artisan, run the following command to avoid permission issues
+
+chown -R www-data:1000 .
 
 ## Vue app
 
