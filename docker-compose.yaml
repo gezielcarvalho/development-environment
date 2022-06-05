@@ -9,7 +9,8 @@ services:
       - "8000:80"
     volumes: 
       - ./lara:/var/www
-
+    networks:
+      - app    
   # web:
   #   build: .docker/react
   #   container_name: web
@@ -27,6 +28,10 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: A_1234567
       MYSQL_DATABASE: laravel
+    ports: 
+      - "3307:3306"
+    networks:
+      - app      
 
   phpmyadmin: 
     image: phpmyadmin
@@ -34,3 +39,9 @@ services:
     restart: always
     ports:
       - 8080:80
+    networks:
+      - app    
+
+networks:
+  app:
+    driver: bridge
