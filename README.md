@@ -1,6 +1,6 @@
 # Development container
 
-Standard container with PHP 8.1, Laravel 8, VueJS, ReactJS, React Native, MySQL and PostgreSQL.
+Standard container with Laravel v8.83.15 (PHP v8.1.6), MySQL and PostgreSQL.
 
 ## PHP main config and libs
 
@@ -18,36 +18,34 @@ docker compose up -d --build
 
 docker ps
 
-### Install dependencies
+### Install Larvel dependencies
 
-**Acesse o bash do container <INSTALL_DIR>_php_1**
-
-docker exec -it <INSTALL_DIR>_php_1 bash
-
-**Execute a instalação das dependências com o composer**
-
+docker exec -it lara bash
 composer install
 
-**Execute a instalação das dependências com o node e compile**
+### Install node dependencies inside Laravel container
 
 npm install
-
 npm run dev
 
-### Concluir configurações do Laravel
+### Set Laravel environment variables
 
 cp .env.example .env
-
 php artisan key:generate
 
+### Create database schema and populate with data
+
 php artisan migrate
+php artisan seed
 
 ### Em ambiente Linux (tomara) ajuste as permissões de storage
 
-chmod -R 775 storage
+chmod -R 777 storage
 
-# Vue
+## Vue app
+
 https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/
 
-# React
+## React
+
 https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs

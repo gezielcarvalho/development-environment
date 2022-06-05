@@ -2,9 +2,9 @@ version: '3.1'
 
 services:
 
-  php:
+  laravel:
     build: .docker/php
-    container_name: app
+    container_name: lara
     ports: 
       - "8000:80"
     volumes: 
