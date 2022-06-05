@@ -18,19 +18,19 @@ services:
   #   volumes: 
   #     - ./react:/var/www/html
 
-  # db:
-  #   build: .docker/mysql
-  #   container_name: db
-  #   restart: always
-  #   volumes:
-  #     - "./.docker/dbdata:/var/lib/mysql"
-  #   environment: 
-  #     MYSQL_ROOT_PASSWORD: A_1234567
-  #     MYSQL_DATABASE: sabre_data
+  db:
+    build: .docker/mysql
+    container_name: db
+    restart: always
+    volumes:
+      - "./.docker/dbdata:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: A_1234567
+      MYSQL_DATABASE: laravel
 
-  # phpmyadmin: 
-  #   image: phpmyadmin
-  #   container_name: myadmin
-  #   restart: always
-  #   ports:
-  #     - 8080:80
+  phpmyadmin: 
+    image: phpmyadmin
+    container_name: myadmin
+    restart: always
+    ports:
+      - 8080:80
