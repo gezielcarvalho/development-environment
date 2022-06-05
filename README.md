@@ -48,8 +48,8 @@ chown -R www-data:1000 .
 
 ## Vue app
 
-https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/
+<https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/>
 
 ## React
 
-https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs
+<https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs>
