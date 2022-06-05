@@ -1,6 +1,6 @@
 # Development container
 
-Standard container with Laravel v8.83.15 (PHP v8.1.6), MySQL and PostgreSQL.
+Standard container with Laravel v8.83.15 (PHP v8.1.6), Vue 2, MySQL and PostgreSQL.
 
 ## PHP main config and libs
 
