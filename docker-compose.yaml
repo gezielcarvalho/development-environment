@@ -3,34 +3,34 @@ version: '3.1'
 services:
 
   php:
-    build: .
+    build: .docker/php
     container_name: app
     ports: 
       - "8000:80"
     volumes: 
-      - ./www:/var/www/html
+      - ./lara:/var/www
 
-  web:
-    build: .docker/react
-    container_name: web
-    ports: 
-      - "3000:3000"
-    volumes: 
-      - ./react:/var/www/html
+  # web:
+  #   build: .docker/react
+  #   container_name: web
+  #   ports: 
+  #     - "3000:3000"
+  #   volumes: 
+  #     - ./react:/var/www/html
 
-  db:
-    build: .docker/mysql
-    container_name: db
-    restart: always
-    volumes:
-      - "./.docker/dbdata:/var/lib/mysql"
-    environment: 
-      MYSQL_ROOT_PASSWORD: A_1234567
-      MYSQL_DATABASE: sabre_data
+  # db:
+  #   build: .docker/mysql
+  #   container_name: db
+  #   restart: always
+  #   volumes:
+  #     - "./.docker/dbdata:/var/lib/mysql"
+  #   environment: 
+  #     MYSQL_ROOT_PASSWORD: A_1234567
+  #     MYSQL_DATABASE: sabre_data
 
-  phpmyadmin: 
-    image: phpmyadmin
-    container_name: myadmin
-    restart: always
-    ports:
-      - 8080:80
+  # phpmyadmin: 
+  #   image: phpmyadmin
+  #   container_name: myadmin
+  #   restart: always
+  #   ports:
+  #     - 8080:80

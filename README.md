@@ -1,18 +1,24 @@
-# Container com Laravel 8
- 
-Container padrão pra executar as atividades de desenvolvimento do **sabre**.
+# Development container
 
-## Procedimentos com docker 
+Standard container with PHP 8.1, Laravel 8, VueJS, ReactJS, React Native, MySQL and PostgreSQL.
 
-### Levantar container
+## PHP main config and libs
+
+1. libzip-dev zip libmcrypt-dev libmagickwand-dev wget git libpq-dev libgmp-dev
+
+### Container names
 
 docker compose up -d --build
 
-### Verificar se os containers estão rodando
+### Run containers
+
+docker compose up -d --build
+
+### Check if they are running
 
 docker ps
 
-### Instalar dependências
+### Install dependencies
 
 **Acesse o bash do container <INSTALL_DIR>_php_1**
 
