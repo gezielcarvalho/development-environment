@@ -2,6 +2,40 @@ version: '3.1'
 
 services:
 
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=root
+        - MONGO_INITDB_ROOT_PASSWORD=password
+        - MONGO_INITDB_ROOT_DATABASE=dboption
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.docker/mgdata/db:/data/db
+      - ./.docker/mgdata/dev.archive:/Databases/dev.archive
+      - ./.docker/mgdata/production:/Databases/production
+    networks:
+    - app  
+
+  mongo-express:
+    image: mongo-express
+    container_name: mexpress
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_URL=mongodb://root:password@mongo:27017/?authSource=admin
+      - ME_CONFIG_BASICAUTH_USERNAME=mexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
+    links:
+      - mongo
+    restart: unless-stopped
+    ports:
+      - "8081:8081"  
+    networks:
+    - app  
+
   laravel:
     build: .docker/php
     container_name: lara
@@ -11,13 +45,14 @@ services:
       - ./lara:/var/www
     networks:
       - app    
-  # web:
-  #   build: .docker/react
-  #   container_name: web
-  #   ports: 
-  #     - "3000:3000"
-  #   volumes: 
-  #     - ./react:/var/www/html
+
+  web:
+    build: .docker/node
+    container_name: web
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./react:/var/www/html
 
   db:
     build: .docker/mysql
@@ -52,7 +87,7 @@ services:
     ports:
     - "5432:5432"
     volumes:
-    - ./pgdata:/var/lib/postgresql/data 
+    - ./.docker/pgdata:/var/lib/postgresql/data 
     networks:
     - app      
 

@@ -1,2 +1,4 @@
 .docker/dbdata
+.docker/mgdata
+.docker/pgdata
 react/node_modules

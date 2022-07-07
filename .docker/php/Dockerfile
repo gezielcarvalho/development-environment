@@ -5,11 +5,15 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update 
 
 # https://github.com/docker-library/php/issues/221
-RUN apt-get install -y nodejs libpq-dev libzip-dev zip libgmp-dev libmcrypt-dev libmagickwand-dev --no-install-recommends 
+RUN apt-get install -y nodejs libcurl4-openssl-dev pkg-config libssl-dev libpq-dev libzip-dev zip libgmp-dev libmcrypt-dev libmagickwand-dev --no-install-recommends 
 
 RUN pecl install imagick 
-
+ 
 RUN docker-php-ext-enable imagick 
+
+RUN pecl install mongodb 
+
+RUN docker-php-ext-enable mongodb 
 
 # GMP https://stackoverflow.com/questions/64702858/installing-gmp-extention-on-php-7-4-fpm-aplpine-docker/71739173#71739173
 # ZIP - https://stackoverflow.com/questions/48700453/docker-image-build-with-php-zip-extension-shows-bundled-libzip-is-deprecated-w
