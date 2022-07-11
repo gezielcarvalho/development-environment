@@ -53,3 +53,5 @@ chown -R www-data:1000 .
 ## React
 
 <https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs>
+
+https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
