@@ -1,8 +1,19 @@
 # Development container
 
-Standard container with Laravel v8.83.15 (PHP v8.1.6), Vue 2, MySQL and PostgreSQL.
+Standard container with PHP v8.1, Laravel v8.83.15, Vue 2, MySQL and PostgreSQL.
 
-## PHP main config and libs
+## PHP v8.1.8
+
+Changelog at https://www.php.net/ChangeLog-8.php#8.1.8
+
+## Laravel 8.83.15 (PORT 8009)
+
+Release notes at https://laravel.com/docs/8.x/releases
+
+## Vue 2.6 (embedded in Laravel)
+
+Documentation at https://br.vuejs.org/v2/guide/installation.html
+
 
 1. libzip-dev zip libmcrypt-dev libmagickwand-dev wget git libpq-dev libgmp-dev
 
@@ -55,3 +66,4 @@ chown -R www-data:1000 .
 <https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs>
 
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
+https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files

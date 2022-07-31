@@ -11,7 +11,7 @@ services:
         - MONGO_INITDB_ROOT_DATABASE=lara_mongo
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27019:27017"
     volumes:
       - ./.docker/mgdata/db:/data/db
       - ./.docker/mgdata/dev.archive:/Databases/dev.archive
@@ -24,15 +24,15 @@ services:
     container_name: mexpress
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_URL=mongodb://root:password@mongo:27017/?authSource=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=A_1234567
+      - ME_CONFIG_MONGODB_URL=mongodb://root:A_1234567@mongo:27017/?authSource=admin
       - ME_CONFIG_BASICAUTH_USERNAME=mexpress
       - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
     links:
       - mongo
     restart: unless-stopped
     ports:
-      - "8081:8081"  
+      - "8091:8081"  
     networks:
     - app  
 
@@ -40,7 +40,7 @@ services:
     build: .docker/php
     container_name: lara
     ports: 
-      - "8000:80"
+      - "8009:80"
     volumes: 
       - ./lara:/var/www
     networks:
@@ -50,7 +50,7 @@ services:
     build: react/.
     container_name: web
     ports: 
-      - "3100:3000"
+      - "3009:3000"
     volumes: 
       - ./react:/app
 
@@ -64,7 +64,7 @@ services:
       MYSQL_ROOT_PASSWORD: A_1234567
       MYSQL_DATABASE: laravel
     ports: 
-      - "3307:3306"
+      - "3309:3306"
     networks:
       - app      
 
@@ -73,7 +73,7 @@ services:
     container_name: myadmin
     restart: always
     ports:
-      - 8080:80
+      - 8089:80
     networks:
       - app    
 
@@ -85,7 +85,7 @@ services:
     - POSTGRES_PASSWORD=postgres   
     - POSTGRES_DB=postgres  
     ports:
-    - "5432:5432"
+    - "5439:5432"
     volumes:
     - ./.docker/pgdata:/var/lib/postgresql/data 
     networks:
@@ -99,7 +99,7 @@ services:
     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
     - PGADMIN_DEFAULT_PASSWORD=postgres
     ports:
-    - "5050:80"
+    - "5059:80"
     networks:
     - app    
 
