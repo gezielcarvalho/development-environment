@@ -33,6 +33,15 @@ RUN mkdir /var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN echo 'zend_extension=xdebug' >> /usr/local/etc/php/php.ini
+RUN echo 'xdebug.mode=develop,debug,coverage' >> /usr/local/etc/php/php.ini
+RUN echo 'xdebug.client_host=host.docker.internal' >> /usr/local/etc/php/php.ini
+RUN echo 'xdebug.start_with_request=trigger' >> /usr/local/etc/php/php.ini
+RUN echo 'session.save_path = "/tmp"' >> /usr/local/etc/php/php.ini
+
+RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 RUN a2enmod rewrite 
 
 RUN service apache2 restart
