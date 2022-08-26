@@ -1,6 +1,17 @@
 # Development container
 
-Standard container with PHP v8.1, Laravel v8.83.15, Vue 2, MySQL and PostgreSQL.
+Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL and PostgreSQL.
+
+| App  | Name  | Port  |
+|---|---|---|
+|  Laravel 8.83.15 Vue 2.6 | lara | 8009 |
+|  ReactJS  | web | 3009  |
+|  MongoDb  | mongo | 27019 |
+|  MongoExpress | mexpress | 8091 |
+|  MySql 5.7 | mydb | 3309 |
+|  PhpMyAdmin | myadmin | 8089 |
+|  PgDb | pgdb | 5439 |
+|  PgAdmin | pgadm | 5059 |
 
 ## PHP v8.1.8
 

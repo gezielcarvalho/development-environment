@@ -24,8 +24,8 @@ services:
     container_name: mexpress
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=A_1234567
-      - ME_CONFIG_MONGODB_URL=mongodb://root:A_1234567@mongo:27017/?authSource=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_URL=mongodb://root:password@mongo:27017/?authSource=admin
       - ME_CONFIG_BASICAUTH_USERNAME=mexpress
       - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
     links:
@@ -54,12 +54,13 @@ services:
     volumes: 
       - ./react:/app
 
-  db:
+  mydb:
     build: .docker/mysql
-    container_name: db
+    container_name: mydb
+    command: --explicit_defaults_for_timestamp=1
     restart: always
     volumes:
-      - "./.docker/dbdata:/var/lib/mysql"
+      - "./.docker/mydata:/var/lib/mysql"
     environment: 
       MYSQL_ROOT_PASSWORD: A_1234567
       MYSQL_DATABASE: laravel
@@ -72,6 +73,8 @@ services:
     image: phpmyadmin
     container_name: myadmin
     restart: always
+    environment:
+      - PMA_HOST=mydb    
     ports:
       - 8089:80
     networks:
