@@ -8,7 +8,7 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 |  ReactJS  | web | 3009  |
 |  MongoDb  | mongo | 27019 |
 |  MongoExpress | mexpress | 8091 |
-|  MySql 5.7 | mydb | 3309 |
+|  MariaDB 10.2 (~MySql 5.7) | mydb | 3309 |
 |  PhpMyAdmin | myadmin | 8089 |
 |  PgDb | pgdb | 5439 |
 |  PgAdmin | pgadm | 5059 |
