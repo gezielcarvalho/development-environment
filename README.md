@@ -25,14 +25,9 @@ Release notes at https://laravel.com/docs/8.x/releases
 
 Documentation at https://br.vuejs.org/v2/guide/installation.html
 
+# Getting started
 
-1. libzip-dev zip libmcrypt-dev libmagickwand-dev wget git libpq-dev libgmp-dev
-
-### Container names
-
-docker compose up -d --build
-
-### Run containers
+## Run containers
 
 docker compose up -d --build
 
@@ -40,7 +35,7 @@ docker compose up -d --build
 
 docker ps
 
-### Install Larvel dependencies
+### Install Laravel dependencies
 
 docker exec -it lara bash
 composer install
@@ -58,7 +53,7 @@ php artisan key:generate
 ### Create database schema and populate with data
 
 php artisan migrate
-php artisan seed
+php artisan db:seed
 
 ### User and permission settings
 
