@@ -25,7 +25,7 @@
         created() {
             console.log(this.$route.params.id);
             this.axios
-                .get(`http://localhost:8000/api/organizations/${this.$route.params.id}`)
+                .get(`http://localhost:8009/api/organizations/${this.$route.params.id}`)
                 .then((res) => {
                     console.log(res.data);
                     this.organization = res.data;
@@ -34,7 +34,7 @@
         methods: {
             updateOrganization() {
                 this.axios
-                    .patch(`http://localhost:8000/api/organizations/${this.$route.params.id}`, this.organization)
+                    .patch(`http://localhost:8009/api/organizations/${this.$route.params.id}`, this.organization)
                     .then((res) => {
                         this.$router.push({ name: 'home' });
                     });

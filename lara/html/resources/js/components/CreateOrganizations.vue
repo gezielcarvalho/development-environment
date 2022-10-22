@@ -25,7 +25,7 @@
         methods: {
             addOrganization() {
                 this.axios
-                    .post('http://localhost:8000/api/organizations', this.organization)
+                    .post('http://localhost:8009/api/organizations', this.organization)
                     .then(response => (
                         this.$router.push({ name: 'home' })
                     ))
