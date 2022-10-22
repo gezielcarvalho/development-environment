@@ -54,6 +54,33 @@ services:
     volumes: 
       - ./react:/app
 
+  nest:
+    container_name: nest
+    build:
+      context: nest/.
+      target: development
+    volumes:
+      - ./nest:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      # - ${SERVER_PORT}:${SERVER_PORT}
+      - 3019:3000
+      - 9229:9229
+    command: npm run start:debug
+    # env_file:
+    #   - .env
+    networks:
+      - app
+    depends_on:
+      - redis
+      - pgdb
+
+  redis:
+    container_name: redis
+    image: redis:5
+    networks:
+      - app    
+
   mydb:
     build: .docker/mysql
     container_name: mydb
