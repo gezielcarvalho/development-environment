@@ -73,3 +73,30 @@ chown -R www-data:1000 .
 
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+
+# WSL
+
+## Setting up environment
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+wsl --set-default-version 2
+
+Choose your Linux distro from Windows Store
+
+
+https://github.com/codeedu/wsl2-docker-quickstart
+
+https://www.youtube.com/watch?v=rdp7xwziQtU
+
+https://github.com/argentinaluiz/my-vscode-settings
+
+https://github.com/argentinaluiz/ambiente-dev-produtivo
+
+
+## Troubleshooting
+
+https://pureinfotech.com/uninstall-wsl2-windows-10/
