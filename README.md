@@ -74,6 +74,12 @@ chown -R www-data:1000 .
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 
+# MacOS
+
+# Changelog
+
+Setting up SSH keys
+
 # WSL
 
 ## Setting up environment
