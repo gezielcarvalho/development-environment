@@ -5,4 +5,3 @@
 .vscode
 react/node_modules
 containers
-!containers/lara
