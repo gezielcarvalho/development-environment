@@ -34,25 +34,7 @@ services:
     ports:
       - "8091:8081"  
     networks:
-    - app  
-
-  laravel:
-    build: .docker/php
-    container_name: lara
-    ports: 
-      - "8009:80"
-    volumes: 
-      - ./lara:/var/www
-    networks:
-      - app    
-
-  web:
-    build: react/.
-    container_name: web
-    ports: 
-      - "3009:3000"
-    volumes: 
-      - ./react:/app
+    - app    
 
   mydb:
     build: .docker/mysql

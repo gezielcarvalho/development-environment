@@ -80,13 +80,9 @@ wsl --set-default-version 2
 
 Choose your Linux distro from Windows Store
 
-
 https://github.com/codeedu/wsl2-docker-quickstart
-
 https://www.youtube.com/watch?v=rdp7xwziQtU
-
 https://github.com/argentinaluiz/my-vscode-settings
-
 https://github.com/argentinaluiz/ambiente-dev-produtivo
 
 
