@@ -2,4 +2,4 @@
 .docker/mgdata
 .docker/pgdata
 .vscode
-react/node_modules
+containers
