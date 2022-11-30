@@ -4,3 +4,4 @@
 .docker/pgadmin
 .vscode
 containers
+docker-compose.yaml

@@ -1,0 +1,154 @@
+version: '3.1'
+
+services:
+
+  # PHP Template
+  # php-app:
+  #   build: .docker/php
+  #   container_name: php-app
+  #   ports: 
+  #     - "8009:80"
+  #   volumes: 
+  #     - ./containers/php-app:/var/www/html
+  #   networks:
+  #     - app 
+
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=root
+        - MONGO_INITDB_ROOT_PASSWORD=password
+        - MONGO_INITDB_ROOT_DATABASE=lara_mongo
+    restart: unless-stopped
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./.docker/mgdata/db:/data/db
+      - ./.docker/mgdata/dev.archive:/Databases/dev.archive
+      - ./.docker/mgdata/production:/Databases/production
+    networks:
+    - app  
+
+  mongo-express:
+    image: mongo-express
+    container_name: mexpress
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_URL=mongodb://root:password@mongo:27017/?authSource=admin
+      - ME_CONFIG_BASICAUTH_USERNAME=mexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
+    links:
+      - mongo
+    restart: unless-stopped
+    ports:
+      - "8091:8081"  
+    networks:
+    - app  
+
+  laravel:
+    build: .docker/php
+    container_name: lara
+    ports: 
+      - "8009:80"
+    volumes: 
+      - ./lara:/var/www
+    networks:
+      - app    
+
+  five:
+    build: .docker/php5
+    container_name: five
+    ports: 
+      - "8015:80"
+    volumes: 
+      - ./five:/var/www
+    networks:
+      - app  
+
+  be:
+    build: .docker/php5
+    container_name: be
+    ports: 
+      - "8001:80"
+    volumes: 
+      - ./be:/var/www/html
+    networks:
+      - app        
+
+  bet:
+    build: .docker/php
+    container_name: bet
+    ports: 
+      - "8011:80"
+    volumes: 
+      - ./bet:/var/www
+    networks:
+      - app  
+
+  web:
+    build: react/.
+    container_name: web
+    ports: 
+      - "3009:3000"
+    volumes: 
+      - ./react:/app
+
+  mydb:
+    build: .docker/mysql
+    container_name: mydb
+    command: --explicit_defaults_for_timestamp=1
+    restart: always
+    volumes:
+      - "./.docker/mydata:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: A_1234567
+      MYSQL_DATABASE: laravel
+    ports: 
+      - "3309:3306"
+    networks:
+      - app      
+
+  phpmyadmin: 
+    image: phpmyadmin
+    container_name: myadmin
+    restart: always
+    environment:
+      - PMA_HOST=mydb    
+    ports:
+      - 8089:80
+    networks:
+      - app    
+
+  pgdb:
+    image: postgres
+    container_name: pgdb
+    environment:
+    - POSTGRES_USER=admin
+    - POSTGRES_PASSWORD=postgres   
+    - POSTGRES_DB=postgres  
+    ports:
+    - "5439:5432"
+    volumes:
+    - ./.docker/pgdata:/var/lib/postgresql/data 
+    networks:
+    - app      
+
+  pgadm:
+    image: dpage/pgadmin4
+    container_name: pgadm
+    restart: always
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+    - PGADMIN_DEFAULT_PASSWORD=postgres
+    volumes:
+      - ./.docker/pgadmin:/var/lib/pgadmin
+    ports:
+    - "5059:80"
+    networks:
+    - app    
+
+networks:
+  app:
+    driver: bridge
