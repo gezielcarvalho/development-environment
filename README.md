@@ -4,7 +4,6 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 
 | App  | Name  | Port  |
 |---|---|---|
-|  Laravel 8.83.15 Vue 2.6 | lara | 8009 |
 |  ReactJS  | web | 3009  |
 |  MongoDb  | mongo | 27019 |
 |  MongoExpress | mexpress | 8091 |
@@ -12,18 +11,6 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 |  PhpMyAdmin | myadmin | 8089 |
 |  PgDb | pgdb | 5439 |
 |  PgAdmin | pgadm | 5059 |
-
-## PHP v8.1.8
-
-Changelog at https://www.php.net/ChangeLog-8.php#8.1.8
-
-## Laravel 8.83.15 (PORT 8009)
-
-Release notes at https://laravel.com/docs/8.x/releases
-
-## Vue 2.6 (embedded in Laravel)
-
-Documentation at https://br.vuejs.org/v2/guide/installation.html
 
 # Getting started
 
@@ -74,6 +61,12 @@ chown -R www-data:1000 .
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 
+# MacOS
+
+# Changelog
+
+Setting up SSH keys
+
 # WSL
 
 ## Setting up environment
@@ -87,13 +80,9 @@ wsl --set-default-version 2
 
 Choose your Linux distro from Windows Store
 
-
 https://github.com/codeedu/wsl2-docker-quickstart
-
 https://www.youtube.com/watch?v=rdp7xwziQtU
-
 https://github.com/argentinaluiz/my-vscode-settings
-
 https://github.com/argentinaluiz/ambiente-dev-produtivo
 
 

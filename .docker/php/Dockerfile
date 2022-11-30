@@ -17,7 +17,7 @@ RUN docker-php-ext-enable mongodb
 
 # GMP https://stackoverflow.com/questions/64702858/installing-gmp-extention-on-php-7-4-fpm-aplpine-docker/71739173#71739173
 # ZIP - https://stackoverflow.com/questions/48700453/docker-image-build-with-php-zip-extension-shows-bundled-libzip-is-deprecated-w
-RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql zip pcntl gmp bcmath
+RUN docker-php-ext-install sockets mysqli pdo pdo_mysql pdo_pgsql zip pcntl gmp bcmath
 
 # JPEG - https://stackoverflow.com/a/52892313/2190689
 RUN apt-get update && apt-get install -y \
@@ -32,15 +32,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN mkdir /var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN echo 'zend_extension=xdebug' >> /usr/local/etc/php/php.ini
-RUN echo 'xdebug.mode=develop,debug,coverage' >> /usr/local/etc/php/php.ini
-RUN echo 'xdebug.client_host=host.docker.internal' >> /usr/local/etc/php/php.ini
-RUN echo 'xdebug.start_with_request=trigger' >> /usr/local/etc/php/php.ini
-RUN echo 'session.save_path = "/tmp"' >> /usr/local/etc/php/php.ini
-
-RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN a2enmod rewrite 
 
