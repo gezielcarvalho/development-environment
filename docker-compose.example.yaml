@@ -47,54 +47,6 @@ services:
     networks:
     - app  
 
-  laravel:
-    build: .docker/php
-    container_name: lara
-    ports: 
-      - "8009:80"
-    volumes: 
-      - ./lara:/var/www
-    networks:
-      - app    
-
-  five:
-    build: .docker/php5
-    container_name: five
-    ports: 
-      - "8015:80"
-    volumes: 
-      - ./five:/var/www
-    networks:
-      - app  
-
-  be:
-    build: .docker/php5
-    container_name: be
-    ports: 
-      - "8001:80"
-    volumes: 
-      - ./be:/var/www/html
-    networks:
-      - app        
-
-  bet:
-    build: .docker/php
-    container_name: bet
-    ports: 
-      - "8011:80"
-    volumes: 
-      - ./bet:/var/www
-    networks:
-      - app  
-
-  web:
-    build: react/.
-    container_name: web
-    ports: 
-      - "3009:3000"
-    volumes: 
-      - ./react:/app
-
   mydb:
     build: .docker/mysql
     container_name: mydb

@@ -13,6 +13,10 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 
 # Getting started
 
+## Configuration file
+
+cp docker-compose.example.yaml docker-compose.yaml
+
 ## Run containers
 
 docker compose up -d --build
