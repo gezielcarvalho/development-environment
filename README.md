@@ -14,6 +14,10 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 
 # Getting started
 
+## Configure SSH for Git
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
 ## Run containers
 
 docker compose up -d --build
