@@ -3,5 +3,5 @@
 .docker/pgdata
 .docker/pgadmin
 .vscode
-react/node_modules
 containers
+docker-compose.yaml

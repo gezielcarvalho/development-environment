@@ -4,7 +4,6 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 
 | App  | Name  | Port  |
 |---|---|---|
-|  ReactJS  | web | 3009  |
 |  MongoDb  | mongo | 27019 |
 |  MongoExpress | mexpress | 8091 |
 |  MariaDB 10.2 (~MySql 5.7) | mydb | 3309 |

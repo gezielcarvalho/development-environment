@@ -45,7 +45,7 @@ services:
     ports:
       - "8091:8081"  
     networks:
-    - app    
+    - app  
 
   mydb:
     build: .docker/mysql
