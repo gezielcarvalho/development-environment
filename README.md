@@ -17,6 +17,34 @@ Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MyS
 
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
+## Configure GPG Keys
+
+### Check if there is any key
+gpg --list-secret-key --keyid-form LONG
+
+### Generate a key if needed
+gpg --full-generate-key
+
+### Get key id
+
+/home/user/.gnupg/pubring.kbx
+-------------------------------
+sec   rsa4096/IDIDIDIDIDIDIDID 2022-01-01 [SC] [expires: 2023-01-01]
+
+### Export public key and add key to remote repository settings
+
+gpg --armor --export IDIDIDIDIDIDIDID
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQINBG ...
+...
+=pdkp
+-----END PGP PUBLIC KEY BLOCK-----
+
+
+
+
 ## Run containers
 
 docker compose up -d --build
