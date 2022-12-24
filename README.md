@@ -42,8 +42,17 @@ mQINBG ...
 =pdkp
 -----END PGP PUBLIC KEY BLOCK-----
 
+### Set signing key as global
 
+git config --global user.signingkey IDIDIDIDIDIDIDID
+git config --global commit.gpgsign true
+git config --global tag.gpgsign true
 
+### Define TTY in bash file.
+
+Insert the following line in .profile or .bash, according to your OS
+
+export GPG_TTY=$(tty)
 
 ## Run containers
 
