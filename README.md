@@ -2,14 +2,14 @@
 
 Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL and PostgreSQL.
 
-| App  | Name  | Port  |
-|---|---|---|
-|  MongoDb  | mongo | 27019 |
-|  MongoExpress | mexpress | 8091 |
-|  MariaDB 10.2 (~MySql 5.7) | mydb | 3309 |
-|  PhpMyAdmin | myadmin | 8089 |
-|  PgDb | pgdb | 5439 |
-|  PgAdmin | pgadm | 5059 |
+| App                       | Name     | Port  |
+| ------------------------- | -------- | ----- |
+| MongoDb                   | mongo    | 27019 |
+| MongoExpress              | mexpress | 8091  |
+| MariaDB 10.2 (~MySql 5.7) | mydb     | 3309  |
+| PhpMyAdmin                | myadmin  | 8089  |
+| PgDb                      | pgdb     | 5439  |
+| PgAdmin                   | pgadm    | 5059  |
 
 # Getting started
 
@@ -20,16 +20,18 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 ## Configure GPG Keys
 
 ### Check if there is any key
+
 gpg --list-secret-key --keyid-form LONG
 
 ### Generate a key if needed
+
 gpg --full-generate-key
 
 ### Get key id
 
-/home/user/.gnupg/pubring.kbx
--------------------------------
-sec   rsa4096/IDIDIDIDIDIDIDID 2022-01-01 [SC] [expires: 2023-01-01]
+## /home/user/.gnupg/pubring.kbx
+
+sec rsa4096/IDIDIDIDIDIDIDID 2022-01-01 [SC] [expires: 2023-01-01]
 
 ### Export public key and add key to remote repository settings
 
@@ -44,15 +46,22 @@ mQINBG ...
 
 ### Set signing key as global
 
-git config --global user.signingkey IDIDIDIDIDIDIDID
-git config --global commit.gpgsign true
-git config --global tag.gpgsign true
+- git config --global user.signingkey IDIDIDIDIDIDIDID
+- git config --global commit.gpgsign true
+- git config --global tag.gpgsign true
 
 ### Define TTY in bash file.
 
 Insert the following line in .profile or .bash, according to your OS
 
 export GPG_TTY=$(tty)
+
+### Add SSH and GPG Keys to Github
+
+- ls -al ~/.ssh
+- cat ~/.ssh/id_[some id].pub
+- https://github.com/settings/keys
+- https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
 
 ## Run containers
 
@@ -111,6 +120,10 @@ Setting up SSH keys
 
 ## Setting up environment
 
+### Review Docker engine installation steps
+
+https://docs.docker.com/engine/install/ubuntu/
+
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
@@ -124,7 +137,6 @@ https://github.com/codeedu/wsl2-docker-quickstart
 https://www.youtube.com/watch?v=rdp7xwziQtU
 https://github.com/argentinaluiz/my-vscode-settings
 https://github.com/argentinaluiz/ambiente-dev-produtivo
-
 
 ## Troubleshooting
 
