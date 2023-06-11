@@ -21,7 +21,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 ### Check if there is any key
 
-gpg --list-secret-key --keyid-form LONG
+gpg --list-secret-key --keyid-form long
 
 ### Generate a key if needed
 
