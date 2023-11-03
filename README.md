@@ -2,14 +2,15 @@
 
 Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL and PostgreSQL.
 
-| App                       | Name     | Port  |
-| ------------------------- | -------- | ----- |
-| MongoDb                   | mongo    | 27019 |
-| MongoExpress              | mexpress | 8091  |
-| MariaDB 10.2 (~MySql 5.7) | mydb     | 3309  |
-| PhpMyAdmin                | myadmin  | 8089  |
-| PgDb                      | pgdb     | 5439  |
-| PgAdmin                   | pgadm    | 5059  |
+| App                       | Name      | Port  |
+| ------------------------- | --------- | ----- |
+| SQL Server                | sqlserver | 1434  |
+| MongoDb                   | mongo     | 27019 |
+| MongoExpress              | mexpress  | 8091  |
+| MariaDB 10.2 (~MySql 5.7) | mydb      | 3309  |
+| PhpMyAdmin                | myadmin   | 8089  |
+| PgDb                      | pgdb      | 5439  |
+| PgAdmin                   | pgadm     | 5059  |
 
 # Getting started
 
@@ -59,7 +60,7 @@ export GPG_TTY=$(tty)
 ### Add SSH and GPG Keys to Github
 
 - ls -al ~/.ssh
-- cat ~/.ssh/id_[some id].pub
+- cat ~/.ssh/id\_[some id].pub
 - https://github.com/settings/keys
 - https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
 
@@ -109,6 +110,10 @@ chown -R www-data:1000 .
 
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+
+## SQL Server
+
+https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-configure?view=sql-server-ver16&pivots=cs1-bash
 
 # MacOS
 
