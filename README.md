@@ -1,10 +1,11 @@
 # Development container
 
-Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL and PostgreSQL.
+Standard containers with NGinx, Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL, SQL Server and PostgreSQL.
 
 | App                       | Name      | Port  |
 | ------------------------- | --------- | ----- |
 | SQL Server                | sqlserver | 1434  |
+| Ubuntu/Nginx              | nginx     | 8081  |
 | MongoDb                   | mongo     | 27019 |
 | MongoExpress              | mexpress  | 8091  |
 | MariaDB 10.2 (~MySql 5.7) | mydb      | 3309  |
@@ -150,10 +151,6 @@ https://github.com/argentinaluiz/ambiente-dev-produtivo
 
 https://pureinfotech.com/uninstall-wsl2-windows-10/
 
-### Nginx
-
-https://stackoverflow.com/questions/1706111/where-can-i-find-the-error-logs-of-nginx-using-fastcgi-and-django
 
 
-nginx – /var/log/nginx/
 

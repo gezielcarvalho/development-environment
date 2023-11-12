@@ -7,6 +7,8 @@ RUN useradd -m ubuntu
 RUN usermod -aG sudo ubuntu
 RUN echo 'ubuntu:A!234567a' | chpasswd
 
+COPY default.conf /etc/nginx/sites-available/default
+
 WORKDIR /home/ubuntu
 RUN mkdir -p /home/ubuntu/apps && chown -R ubuntu:www-data /home/ubuntu/apps && chmod -R 775 /home/ubuntu/apps && chmod +x /home/ubuntu
 

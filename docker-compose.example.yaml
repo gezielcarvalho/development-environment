@@ -20,9 +20,8 @@ services:
     restart: unless-stopped
     ports:
       - "8081:80"
-    volumes:
-      - ./containers/nobre/webroot:/var/www/html   
-      - ./containers/nobre/apps:/home/ubuntu/apps 
+    volumes:  
+      - ./containers/client/apps:/home/ubuntu/apps 
 
   mongo:
     image: mongo:5.0
