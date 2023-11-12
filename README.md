@@ -1,10 +1,11 @@
 # Development container
 
-Standard containers with Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL and PostgreSQL.
+Standard containers with NGinx, Apache, PHP v8.1, Laravel v8.83.15, Vue 2, MongoDb, MySQL, SQL Server and PostgreSQL.
 
 | App                       | Name      | Port  |
 | ------------------------- | --------- | ----- |
 | SQL Server                | sqlserver | 1434  |
+| Ubuntu/Nginx              | nginx     | 8081  |
 | MongoDb                   | mongo     | 27019 |
 | MongoExpress              | mexpress  | 8091  |
 | MariaDB 10.2 (~MySql 5.7) | mydb      | 3309  |
@@ -111,6 +112,9 @@ chown -R www-data:1000 .
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 
+## Mongo 
+mongosh --username "root" --password password
+
 ## SQL Server
 
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-configure?view=sql-server-ver16&pivots=cs1-bash
@@ -146,3 +150,7 @@ https://github.com/argentinaluiz/ambiente-dev-produtivo
 ## Troubleshooting
 
 https://pureinfotech.com/uninstall-wsl2-windows-10/
+
+
+
+
