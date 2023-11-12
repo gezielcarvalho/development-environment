@@ -13,6 +13,17 @@ services:
   #   networks:
   #     - app 
 
+  nginx:
+    build:
+      context: ./.docker/nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./containers/nobre/webroot:/var/www/html   
+      - ./containers/nobre/apps:/home/ubuntu/apps 
+
   mongo:
     image: mongo:5.0
     container_name: mongo

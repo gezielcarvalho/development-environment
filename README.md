@@ -110,6 +110,9 @@ chown -R www-data:1000 .
 https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d
 https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 
+## Mongo 
+mongosh --username "root" --password password
+
 # MacOS
 
 # Changelog
@@ -141,3 +144,11 @@ https://github.com/argentinaluiz/ambiente-dev-produtivo
 ## Troubleshooting
 
 https://pureinfotech.com/uninstall-wsl2-windows-10/
+
+### Nginx
+
+https://stackoverflow.com/questions/1706111/where-can-i-find-the-error-logs-of-nginx-using-fastcgi-and-django
+
+
+nginx – /var/log/nginx/
+
