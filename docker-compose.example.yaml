@@ -41,6 +41,20 @@ services:
     networks:
     - app  
 
+  mssql:
+    image: rapidfort/microsoft-sql-server-2019-ib:latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=yourStrong123Password
+    restart: unless-stopped
+    ports:
+      - "1434:1433"
+    volumes:
+      - ./containers/sqldata_insight/data:/var/opt/mssql/data
+    networks:
+      - app
+
   mongo-express:
     image: mongo-express
     container_name: mexpress
