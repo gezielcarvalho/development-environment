@@ -146,6 +146,19 @@ https://github.com/codeedu/wsl2-docker-quickstart
 https://www.youtube.com/watch?v=rdp7xwziQtU
 https://github.com/argentinaluiz/my-vscode-settings
 https://github.com/argentinaluiz/ambiente-dev-produtivo
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
+
+### Backup WSL Drive
+
+Copy the following file to a safe location
+
+```	
+"C:\Users\{username}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
+```
+
+### Restore WSL Drive
+
+Copy the file to the same location and restart WSL
 
 ## Troubleshooting
 
