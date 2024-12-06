@@ -87,6 +87,32 @@ The setup includes standard containers for the following tools and applications:
    export GPG_TTY=$(tty)
    ```
 
+#### Troubleshooting GPG
+
+*Remove gpg-agent Socket Files*
+
+The gpg-agent may be stuck due to stale socket files. Remove these manually:
+
+Navigate to the GPG directory:
+
+```bash
+Copy code
+cd ~/.gnupg
+Delete the S.gpg-agent files:
+```
+
+
+```bash
+Copy code
+rm -f S.gpg-agent*
+Restart the gpg-agent:
+```
+
+```bash
+Copy code
+gpgconf --launch gpg-agent
+```
+
 ### Run Containers
 
 1. Start the containers:
