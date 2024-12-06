@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  node:
+    volumes:
+      - ./containers/node-app:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      UID: "${UID}"
+      GID: "${GID}"
+    user: "${UID}:${GID}"
+    stdin_open: true
+    tty: true

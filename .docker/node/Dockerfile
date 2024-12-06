@@ -1,23 +1,14 @@
-FROM php:7.4-apache
+# Use an official Node.js image
+FROM node:18
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+# Set the working directory inside the container
+WORKDIR /app
 
-RUN apt-get update 
+# Create the app directory and set permissions
+RUN mkdir -p /app && chown -R 1000:1000 /app
 
-RUN apt-get install -y nodejs libzip-dev zip libmcrypt-dev libmagickwand-dev --no-install-recommends 
+# Switch to a non-root user
+USER 1000:1000
 
-RUN pecl install imagick 
-
-RUN docker-php-ext-enable imagick 
-
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip
-
-RUN mkdir /var/www/html/public
-
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
-
-RUN a2enmod rewrite 
-
-RUN service apache2 restart
-
-RUN usermod -u 1000 www-data
+# Default command to keep the container running
+CMD ["bash"]

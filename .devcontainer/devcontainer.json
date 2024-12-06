@@ -1,0 +1,19 @@
+{
+  "name": "Node.js Dev",
+  "dockerComposeFile": [
+    "../docker-compose.yaml",
+    "../docker-compose.override.yaml"
+  ],
+  "service": "node",
+  "workspaceFolder": "/app",
+  "overrideCommand": false,
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteUser": "root", // Match the user in the container
+  "postCreateCommand": "chown -R ${UID}:${GID} /app"
+}

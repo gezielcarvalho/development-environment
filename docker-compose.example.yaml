@@ -23,6 +23,18 @@ services:
     volumes:  
       - ./containers/client/apps:/home/ubuntu/apps 
 
+  node:
+    build: .
+    container_name: node
+    ports:
+      - "3000:3000" # Expose the application port
+    volumes:
+      - .:/app # Mount the current directory to /app inside the container
+    stdin_open: true # Keep stdin open
+    tty: true         # Allocate a pseudo-TTY
+    networks:
+    - app  
+    
   mongo:
     image: mongo:5.0
     container_name: mongo

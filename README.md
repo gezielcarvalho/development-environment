@@ -158,6 +158,11 @@ Copy the following file to a safe location
 
 ### Restore WSL Drive
 
+Shutdown WSL and copy the file back to the same location
+```
+wsl --shutdown
+```
+
 Copy the file to the same location and restart WSL
 
 ## Troubleshooting
