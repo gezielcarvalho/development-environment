@@ -85,6 +85,7 @@ The setup includes standard containers for the following tools and applications:
 5. Update `.bashrc` or `.profile` to define `GPG_TTY`:
    ```bash
    export GPG_TTY=$(tty)
+   source ~/.bashrc
    ```
 
 #### Troubleshooting GPG
