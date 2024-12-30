@@ -3,23 +3,23 @@ version: '3.1'
 services:
 
   # PHP Template
-  # php-app:
-  #   build: .docker/php
-  #   container_name: php-app
-  #   ports: 
-  #     - "8009:80"
-  #   volumes: 
-  #     - ./containers/php-app:/var/www/html
-  #   networks:
-  #     - app 
-  node:
-    build: ./.docker/node
-    privileged: true
-    container_name: node
-    ports:
-      - "3000:3000"
+  php-app:
+    build: .docker/php
+    container_name: php-app
+    ports: 
+      - "8009:80"
+    volumes: 
+      - ./containers/php-app:/var/www/html
     networks:
-      - app
+      - app 
+  # node:
+  #   build: ./.docker/node
+  #   privileged: true
+  #   container_name: node
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - app
 
   nginx:
     build:
