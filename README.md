@@ -1,4 +1,4 @@
-Here is a revised version of your README file with improvements, corrections, and a **Table of Contents** for better organization:
+Here’s how to update the README file with **instructions for the initial setup** using the `init-containers.sh` script. The update includes how the script works, what it does, and a warning for users about resetting their `.env` and `docker-compose.yaml`.
 
 ---
 
@@ -6,25 +6,22 @@ Here is a revised version of your README file with improvements, corrections, an
 
 This repository sets up a development environment using Docker with various containers for tools and frameworks, including NGinx, Apache, PHP, Laravel, Vue.js, MongoDB, MySQL, SQL Server, and PostgreSQL.
 
+---
+
 ## Table of Contents
 
 1. [Overview](#overview)
 2. [Getting Started](#getting-started)
+   - [Initial Setup Script](#initial-setup-script)
    - [Configure SSH for Git](#configure-ssh-for-git)
    - [Configure GPG Keys](#configure-gpg-keys)
    - [Run Containers](#run-containers)
 3. [Services](#services)
-4. [Setting Up Applications](#setting-up-applications)
-   - [Laravel](#laravel)
-   - [Vue.js](#vuejs)
-   - [React](#react)
-   - [MongoDB](#mongodb)
-   - [SQL Server](#sql-server)
-5. [MacOS Setup](#macos-setup)
-6. [WSL Setup](#wsl-setup)
+4. [MacOS Setup](#macos-setup)
+5. [WSL Setup](#wsl-setup)
    - [Backup and Restore WSL Drive](#backup-and-restore-wsl-drive)
    - [Troubleshooting](#troubleshooting)
-7. [Changelog](#changelog)
+6. [Changelog](#changelog)
 
 ---
 
@@ -48,6 +45,48 @@ The setup includes standard containers for the following tools and applications:
 
 ## Getting Started
 
+### Initial Setup Script
+
+This repository includes an **initialization script** to automate the setup process. The script will:
+
+1. Reset and copy:
+   - `.env.example` → `.env`
+   - `docker-compose.example.yaml` → `docker-compose.yaml`
+2. Create all required folders for volume bindings.
+3. Set appropriate permissions and ownership for these folders.
+4. Start the Docker containers (`docker compose up -d`).
+
+---
+
+### Running the Script
+
+1. **Warning**:
+   The script will overwrite any modifications to `.env` and `docker-compose.yaml`. Ensure you back up these files if needed.
+
+2. **Steps**:
+   - Before running the script, ensure it has the correct permissions:
+
+   ```bash
+   chmod +x init.sh
+   ```
+   - Run the script from your project root:
+
+   ```bash
+   ./init.sh
+   ```
+
+3. **What Happens**:
+   - The script will:
+     - Copy example files to their working versions.
+     - Create and set up required directories for containers (e.g., `./.docker/sqldata`, `./.docker/mgdata`).
+     - Set permissions for Docker volumes.
+     - Start all containers.
+
+4. **Logs**:
+   - The script logs each action for transparency. Review the logs if any errors occur.
+
+---
+
 ### Configure SSH for Git
 
 1. Generate SSH keys:
@@ -59,6 +98,8 @@ The setup includes standard containers for the following tools and applications:
    cat ~/.ssh/id_ed25519.pub
    ```
    Add it to [GitHub SSH Keys](https://github.com/settings/keys).
+
+---
 
 ### Configure GPG Keys
 
@@ -82,37 +123,7 @@ The setup includes standard containers for the following tools and applications:
    git config --global commit.gpgsign true
    ```
 
-5. Update `.bashrc` or `.profile` to define `GPG_TTY`:
-   ```bash
-   export GPG_TTY=$(tty)
-   source ~/.bashrc
-   ```
-
-#### Troubleshooting GPG
-
-*Remove gpg-agent Socket Files*
-
-The gpg-agent may be stuck due to stale socket files. Remove these manually:
-
-Navigate to the GPG directory:
-
-```bash
-Copy code
-cd ~/.gnupg
-Delete the S.gpg-agent files:
-```
-
-
-```bash
-Copy code
-rm -f S.gpg-agent*
-Restart the gpg-agent:
-```
-
-```bash
-Copy code
-gpgconf --launch gpg-agent
-```
+---
 
 ### Run Containers
 
@@ -133,7 +144,7 @@ gpgconf --launch gpg-agent
 
 1. Install dependencies:
    ```bash
-   docker exec -it lara bash
+   docker exec -it php-app bash
    composer install
    npm install
    npm run dev
@@ -150,16 +161,6 @@ gpgconf --launch gpg-agent
    chmod -R 777 storage
    chown -R www-data:1000 .
    ```
-
-### Vue.js
-
-- Guide: [Laravel Vue.js CRUD](https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/)
-
-### React
-
-- Guides:
-  - [Laravel React CRUD](https://techvblogs.com/blog/build-crud-app-with-laravel-and-reactjs)
-  - [Dockerizing React App](https://blog.codeexpertslearning.com.br/dockerizando-uma-aplica%C3%A7%C3%A3o-react-js-f6a22e93bc5d)
 
 ### MongoDB
 
@@ -203,16 +204,11 @@ Instructions to be added...
 
 ---
 
-## Troubleshooting
-
-- [Uninstall WSL2](https://pureinfotech.com/uninstall-wsl2-windows-10/)
-- [Docker Engine Installation for Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-
----
-
 ## Changelog
 
-- **Initial Setup**: Added SSH and GPG key configuration.
-- **Containers**: Set up Laravel, Vue.js, React, MongoDB, SQL Server, and PostgreSQL environments.
+- **Initial Setup**: Added `init.sh` for automated environment setup.
+- **Containers**: Set up Laravel, MongoDB, SQL Server, and PostgreSQL environments.
 
 ---
+
+### Notes:
