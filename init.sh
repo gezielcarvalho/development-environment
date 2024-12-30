@@ -74,6 +74,17 @@ for dir in "${REQUIRED_DIRECTORIES[@]}"; do
   log "Set permissions for: $dir"
 done
 
+# Change permissions and ownership for 'containers' folder
+CONTAINERS_DIR="./containers"
+if [ -d "$CONTAINERS_DIR" ]; then
+  log "Updating permissions and ownership for the 'containers' folder..."
+  sudo chown -R $USER:$USER "$CONTAINERS_DIR"
+  sudo chmod -R 777 "$CONTAINERS_DIR"
+  log "Permissions and ownership updated for: $CONTAINERS_DIR"
+else
+  log "'containers' folder not found. Skipping."
+fi
+
 # Start Docker containers
 log "Starting Docker containers..."
 docker compose up -d

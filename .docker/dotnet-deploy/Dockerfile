@@ -13,7 +13,7 @@ ARG SSH_PASSWORD
 RUN useradd -m -s /bin/bash $SSH_USER && \
     echo "$SSH_USER:$SSH_PASSWORD" | chpasswd && \
     mkdir /home/$SSH_USER/.ssh && chmod 700 /home/$SSH_USER/.ssh && \
-    mkdir /home/$SSH_USER/app && \
+    mkdir /home/$SSH_USER/app && chmod 700 /home/$SSH_USER/.ssh && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/.ssh && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/app
 
