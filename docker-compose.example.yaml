@@ -13,7 +13,7 @@ services:
       - "2222:22" # Map SSH port for remote access to the container
       - "5008:5000" # Map HTTP port (host:container) for .NET app access
     volumes:
-      - ./containers/dotnet-app:~/app # Mount the deployment folder to the app directory in the container
+      - ./containers/dotnet-app:/home/${SSH_PASSWORD}/app # Mount the deployment folder to the app directory in the container
     environment: # Pass runtime environment variables
       - DOTNET_RUNNING_IN_CONTAINER=true # Indicates that the .NET app is running inside a container
       - DOTNET_USE_POLLING_FILE_WATCHER=true # Ensures that file changes are detected properly in mounted volumes
