@@ -2,6 +2,7 @@
 .docker/mgdata
 .docker/pgdata
 .docker/pgadmin
+.docker/sqldata
 .vscode
 containers
 docker-compose.yaml

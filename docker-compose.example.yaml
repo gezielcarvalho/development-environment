@@ -2,7 +2,6 @@ version: '3.1'
 
 services:
 
-  # PHP Template
   php-app:
     build: .docker/php
     container_name: php-app
@@ -12,14 +11,6 @@ services:
       - ./containers/php-app:/var/www/html
     networks:
       - app 
-  # node:
-  #   build: ./.docker/node
-  #   privileged: true
-  #   container_name: node
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - app
 
   nginx:
     build:
@@ -32,14 +23,14 @@ services:
       - ./containers/client/apps:/home/ubuntu/apps 
 
   node:
-    build: .
+    build: .docker/node
     container_name: node
     ports:
-      - "3000:3000" # Expose the application port
+      - "3000:3000" 
     volumes:
-      - .:/app # Mount the current directory to /app inside the container
-    stdin_open: true # Keep stdin open
-    tty: true         # Allocate a pseudo-TTY
+      - .:/app 
+    stdin_open: true 
+    tty: true         
     networks:
     - app  
     
@@ -61,7 +52,7 @@ services:
     - app  
 
   mssql:
-    image: rapidfort/microsoft-sql-server-2019-ib:latest
+    build: .docker/sqlserver
     container_name: sqlserver
     environment:
       - ACCEPT_EULA=Y
@@ -70,7 +61,7 @@ services:
     ports:
       - "1434:1433"
     volumes:
-      - ./containers/sqldata_insight/data:/var/opt/mssql/data
+      - ./.docker/sqldata/data:/var/opt/mssql/data
     networks:
       - app
 
