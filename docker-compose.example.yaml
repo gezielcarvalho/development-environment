@@ -12,14 +12,16 @@ services:
     ports:
       - "2222:22" # Map SSH port for remote access to the container
       - "5008:5000" # Map HTTP port (host:container) for .NET app access
+      - "5009:5001" # Map HTTP port (host:container) for .NET app access
     volumes:
       - ./containers/dotnet-app:/home/${SSH_USER}/app # Mount the deployment folder to the app directory in the container
+      - ./containers/dp-keys:/root/.aspnet/DataProtection-Keys # Mount for Data Protection keys
     environment: # Pass runtime environment variables
       - DOTNET_RUNNING_IN_CONTAINER=true # Indicates that the .NET app is running inside a container
       - DOTNET_USE_POLLING_FILE_WATCHER=true # Ensures that file changes are detected properly in mounted volumes
-      - ASPNETCORE_URLS=http://0.0.0.0:5000 # Configures the .NET app to listen on all network interfaces (IPv4) on port 5000
       - SSH_USER=${SSH_USER} # Pass SSH_USER for runtime use (if needed)
       - SSH_PASSWORD=${SSH_PASSWORD} # Pass SSH_PASSWORD for runtime use (if needed)
+      - ASPNETCORE_HTTP_PORTS= # Set as empty to avoid conflicts with other services
     networks:
       - app
 
