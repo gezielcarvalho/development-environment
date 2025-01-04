@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y openssh-server && \
 # Declare build arguments for user and password
 ARG SSH_USER
 ARG SSH_PASSWORD
+ARG CRT_PASSWORD
 
 # Create a deploy user and set up SSH access
 RUN useradd -m -s /bin/bash $SSH_USER && \
@@ -16,6 +17,11 @@ RUN useradd -m -s /bin/bash $SSH_USER && \
     mkdir /home/$SSH_USER/app && chmod 700 /home/$SSH_USER/.ssh && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/.ssh && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/app
+
+COPY ./cert/localhost.pfx /usr/local/share/ca-certificates/localhost.pfx
+
+# Import the certificate to the container's certificate store
+RUN dotnet dev-certs https --clean --import /usr/local/share/ca-certificates/localhost.pfx -p "$CRT_PASSWORD"
 
 # Expose ports for SSH
 EXPOSE 22

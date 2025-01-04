@@ -12,7 +12,7 @@ services:
     ports:
       - "2222:22" # Map SSH port for remote access to the container
       - "5008:5000" # Map HTTP port (host:container) for .NET app access
-      - "5009:5001" # Map HTTP port (host:container) for .NET app access
+      - "5009:5001" # Map HTTPS port (host:container) for .NET app access
     volumes:
       - ./containers/dotnet-app:/home/${SSH_USER}/app # Mount the deployment folder to the app directory in the container
       - ./containers/dp-keys:/root/.aspnet/DataProtection-Keys # Mount for Data Protection keys
