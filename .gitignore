@@ -8,3 +8,4 @@ containers
 docker-compose.yaml
 .env
 **/cert/*
+localhost.pfx

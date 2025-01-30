@@ -76,8 +76,8 @@ done
 
 
 # Start Docker containers
-log "Starting Docker containers..."
-docker compose up -d
+log "Starting/Building Docker containers..."
+docker compose up -d --build
 if [ $? -eq 0 ]; then
   log "Containers started successfully."
 else
@@ -96,7 +96,17 @@ else
   log "'containers' folder not found. Skipping."
 fi
 
+# Set permissions for the application inside the dotnet container
 docker exec dotnet-app chown -R deploy:deploy /home/deploy/app
 docker exec dotnet-app chmod -R 755 /home/deploy/app
+
+#!/bin/bash
+
+# Copy the certificate from the container to WSL
+docker cp dotnet-app:/usr/local/share/ca-certificates/localhost.pfx ./localhost.pfx
+
+echo "[INFO] Certificate copied to your project."
+echo "[INFO] Please import 'localhost.pfx' into Windows Trusted Root Certification Authorities."
+
 
 log "Initialization complete."

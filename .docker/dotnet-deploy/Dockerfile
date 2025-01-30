@@ -18,10 +18,11 @@ RUN useradd -m -s /bin/bash $SSH_USER && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/.ssh && \
     chown $SSH_USER:$SSH_USER /home/$SSH_USER/app
 
-COPY ./cert/localhost.pfx /usr/local/share/ca-certificates/localhost.pfx
-
-# Import the certificate to the container's certificate store
-RUN dotnet dev-certs https --clean --import /usr/local/share/ca-certificates/localhost.pfx -p "$CRT_PASSWORD"
+RUN rm -f /usr/local/share/ca-certificates/localhost.pfx
+# Generate a self-signed development certificate inside the container
+RUN dotnet dev-certs https --clean && \
+    dotnet dev-certs https -ep /usr/local/share/ca-certificates/localhost.pfx -p "$CRT_PASSWORD" && \
+    dotnet dev-certs https --trust
 
 # Expose ports for SSH
 EXPOSE 22

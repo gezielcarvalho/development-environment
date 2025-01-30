@@ -8,6 +8,7 @@ services:
       args: # Pass build-time arguments
         SSH_USER: ${SSH_USER}
         SSH_PASSWORD: ${SSH_PASSWORD}
+        CRT_PASSWORD: ${CRT_PASSWORD}
     container_name: dotnet-app
     ports:
       - "2222:22" # Map SSH port for remote access to the container

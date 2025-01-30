@@ -1,10 +1,8 @@
-Here’s how to update the README file with **instructions for the initial setup** using the `init-containers.sh` script. The update includes how the script works, what it does, and a warning for users about resetting their `.env` and `docker-compose.yaml`.
-
----
-
-# Development Container
+# Development Containers
 
 This repository sets up a development environment using Docker with various containers for tools and frameworks, including NGinx, Apache, PHP, Laravel, Vue.js, MongoDB, MySQL, SQL Server, and PostgreSQL.
+
+All the scripts and configurations are designed to work on Ubuntu or WSL2 environments. If you are using MacOS or Windows, you may need to make some adjustments.
 
 ---
 
@@ -13,15 +11,14 @@ This repository sets up a development environment using Docker with various cont
 1. [Overview](#overview)
 2. [Getting Started](#getting-started)
    - [Initial Setup Script](#initial-setup-script)
-   - [Configure SSH for Git](#configure-ssh-for-git)
-   - [Configure GPG Keys](#configure-gpg-keys)
    - [Run Containers](#run-containers)
 3. [Services](#services)
 4. [MacOS Setup](#macos-setup)
 5. [WSL Setup](#wsl-setup)
    - [Backup and Restore WSL Drive](#backup-and-restore-wsl-drive)
    - [Troubleshooting](#troubleshooting)
-6. [Changelog](#changelog)
+6. [Configure SSH for Git](#configure-ssh-for-git)
+7. [Configure GPG Keys](#configure-gpg-keys)
 
 ---
 
@@ -84,44 +81,6 @@ This repository includes an **initialization script** to automate the setup proc
 
 4. **Logs**:
    - The script logs each action for transparency. Review the logs if any errors occur.
-
----
-
-### Configure SSH for Git
-
-1. Generate SSH keys:
-   ```bash
-   ssh-keygen -t ed25519 -C "your_email@example.com"
-   ```
-2. Add the SSH key to GitHub by copying the public key:
-   ```bash
-   cat ~/.ssh/id_ed25519.pub
-   ```
-   Add it to [GitHub SSH Keys](https://github.com/settings/keys).
-
----
-
-### Configure GPG Keys
-
-1. Check for existing keys:
-   ```bash
-   gpg --list-secret-key --keyid-form long
-   ```
-2. Generate a new GPG key:
-   ```bash
-   gpg --full-generate-key
-   ```
-3. Export the public key:
-   ```bash
-   gpg --armor --export <KEY_ID>
-   ```
-   Add it to [GitHub GPG Keys](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key).
-
-4. Set the signing key globally:
-   ```bash
-   git config --global user.signingkey <KEY_ID>
-   git config --global commit.gpgsign true
-   ```
 
 ---
 
@@ -204,11 +163,40 @@ Instructions to be added...
 
 ---
 
-## Changelog
+### Configure SSH for Git
 
-- **Initial Setup**: Added `init.sh` for automated environment setup.
-- **Containers**: Set up Laravel, MongoDB, SQL Server, and PostgreSQL environments.
+1. Generate SSH keys:
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ```
+2. Add the SSH key to GitHub by copying the public key:
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+   Add it to [GitHub SSH Keys](https://github.com/settings/keys).
 
 ---
 
-### Notes:
+### Configure GPG Keys
+
+1. Check for existing keys:
+   ```bash
+   gpg --list-secret-key --keyid-form long
+   ```
+2. Generate a new GPG key:
+   ```bash
+   gpg --full-generate-key
+   ```
+3. Export the public key:
+   ```bash
+   gpg --armor --export <KEY_ID>
+   ```
+   Add it to [GitHub GPG Keys](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key).
+
+4. Set the signing key globally:
+   ```bash
+   git config --global user.signingkey <KEY_ID>
+   git config --global commit.gpgsign true
+   ```
+
+---
