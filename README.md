@@ -66,19 +66,19 @@ This multi-tool development environment provides containerized access to:
 
 ## Available Services
 
-| Service             | Container  | Port      | Description                  |
-| ------------------- | ---------- | --------- | ---------------------------- |
-| .NET Application    | dotnet-app | 5008/5009 | ASP.NET Core with SSH access |
-| PHP Application     | php-app    | 8009      | PHP runtime with Apache      |
-| Node.js Application | node       | 3000      | Node.js development server   |
-| Nginx               | nginx      | 8081      | Static file & SPA hosting    |
-| SQL Server          | sqlserver  | 1434      | Microsoft SQL Server 2019+   |
-| MongoDB             | mongo      | 27019     | NoSQL document database      |
-| Mongo Express       | mexpress   | 8091      | MongoDB web interface        |
-| MariaDB 10.2        | mydb       | 3309      | MySQL-compatible database    |
-| phpMyAdmin          | myadmin    | 8089      | MySQL/MariaDB web interface  |
-| PostgreSQL          | pgdb       | 5439      | Relational database          |
-| pgAdmin             | pgadm      | 5059      | PostgreSQL web interface     |
+| Service             | Container  | Access URL                                      | Description                  |
+| ------------------- | ---------- | ----------------------------------------------- | ---------------------------- |
+| .NET Application    | dotnet-app | http://localhost:5008<br>https://localhost:5009 | ASP.NET Core with SSH access |
+| PHP Application     | php-app    | http://localhost:8009                           | PHP runtime with Apache      |
+| Node.js Application | node       | http://localhost:3000                           | Node.js development server   |
+| Nginx               | nginx      | http://localhost:8081                           | Static file & SPA hosting    |
+| SQL Server          | sqlserver  | localhost:1434                                  | Microsoft SQL Server 2019+   |
+| MongoDB             | mongo      | localhost:27019                                 | NoSQL document database      |
+| Mongo Express       | mexpress   | http://localhost:8091                           | MongoDB web interface        |
+| MariaDB 10.2        | mydb       | localhost:3309                                  | MySQL-compatible database    |
+| phpMyAdmin          | myadmin    | http://localhost:8089                           | MySQL/MariaDB web interface  |
+| PostgreSQL          | pgdb       | localhost:5439                                  | Relational database          |
+| pgAdmin             | pgadm      | http://localhost:5059                           | PostgreSQL web interface     |
 
 ---
 
@@ -114,7 +114,14 @@ The fastest way to get started is using the included initialization script:
    - Configures .NET container permissions
    - Exports SSL certificate for development
 
-4. **Verify services are running**:
+4. **First-time setup (2-3 minutes)**:
+
+   - Laravel container will automatically create a fresh installation
+   - Node.js container will create a sample Express application
+   - .NET container will create a sample ASP.NET Core Web API
+   - Nginx will serve a sample landing page
+
+5. **Verify services are running**:
    ```bash
    docker ps
    ```
@@ -156,6 +163,12 @@ If you prefer manual control:
 
 The .NET container includes SSH access for remote deployment and debugging.
 
+**🎉 Auto-configured on first run:**
+
+- Sample ASP.NET Core Web API is automatically created
+- Application runs on container startup
+- Access immediately at `http://localhost:5008`
+
 **Access via SSH**:
 
 ```bash
@@ -168,66 +181,88 @@ ssh deploy@localhost -p 2222
 1. After running `init.sh`, import `localhost.pfx` into Windows Trusted Root Certification Authorities
 2. Access your app:
    - HTTP: `http://localhost:5008`
-   - HTTPS: `https://localhost:5009`
+   - HTTPS: `https://localhost:5009` (requires certificate import)
 
-**Deploy your application**:
+**Deploy your own application**:
 
-- Place your .NET project in `./containers/dotnet-app/`
-- The container will automatically detect and run it
+1. Replace files in `./containers/dotnet-app/` with your project
+2. The container will automatically build and run it on restart
+3. Or use SSH to deploy remotely
 
 ### PHP/Laravel Applications
 
-**Initial Setup**:
+**🎉 Auto-configured on first run:**
 
-1. Place your PHP/Laravel project in `./containers/php-app/`
+- Fresh Laravel installation is automatically created (takes 2-3 minutes)
+- Composer dependencies installed
+- NPM packages installed and assets built
+- Application key generated
+- Proper permissions set automatically
+- Access immediately at `http://localhost:8009`
 
-2. **Access the PHP container**:
+**The container automatically:**
 
+- Detects if Laravel is already installed (won't reinstall)
+- Sets proper file permissions on each startup
+- Skips setup if you replace it with your own project
+
+**Using your own Laravel project**:
+
+1. **Replace the auto-generated app**:
+
+   ```bash
+   # Stop container
+   docker compose stop php-app
+
+   # Remove the auto-generated Laravel
+   rm -rf ./containers/php-app/*
+   rm ./containers/php-app/.laravel_initialized
+
+   # Place your project files in ./containers/php-app/
+
+   # Restart container
+   docker compose up -d php-app
+   ```
+
+2. **Or manually configure inside the container**:
    ```bash
    docker exec -it php-app bash
-   ```
-
-3. **Install Laravel dependencies**:
-
-   ```bash
    composer install
-   npm install
-   npm run dev
-   ```
-
-4. **Configure Laravel environment**:
-
-   ```bash
-   cp .env.example .env
    php artisan key:generate
    php artisan migrate
-   php artisan db:seed
-   ```
-
-5. **Fix permissions**:
-   ```bash
-   chmod -R 777 storage bootstrap/cache
-   chown -R www-data:www-data .
    ```
 
 **Access your application**: `http://localhost:8009`
 
 ### Node.js Applications
 
-**Development Setup**:
+**🎉 Auto-configured on first run:**
 
-1. Place your Node.js project in `./containers/node-app/`
+- Sample Express.js application is automatically created
+- Dependencies installed automatically
+- Server starts automatically
+- Access immediately at `http://localhost:3000`
 
-2. **Access the Node container**:
+**The sample app includes:**
 
+- Express web server with sample routes
+- API endpoints (`/api/status`, `/api/info`)
+- Nodemon for auto-reload
+- Professional landing page
+
+**Using your own Node.js project**:
+
+1. **Replace the sample app**:
+
+   - Place your `package.json` and code in `./containers/node-app/`
+   - Remove `.node_initialized` file to trigger fresh setup
+   - Restart container: `docker compose restart node`
+
+2. **Or work with the existing setup**:
    ```bash
    docker exec -it node bash
-   ```
-
-3. **Install dependencies and run**:
-   ```bash
-   npm install
-   npm run dev
+   npm install your-package
+   # Edit index.js or add your files
    ```
 
 **Custom port configuration**: Edit `docker-compose.override.yaml` to change the exposed port

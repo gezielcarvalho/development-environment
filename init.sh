@@ -96,6 +96,16 @@ else
   log "'containers' folder not found. Skipping."
 fi
 
+# Fix line endings for entrypoint scripts
+log "Fixing line endings for entrypoint scripts..."
+for script in .docker/*/entrypoint.sh; do
+  if [ -f "$script" ]; then
+    dos2unix "$script" 2>/dev/null || sed -i 's/\r$//' "$script"
+    chmod +x "$script"
+    log "Fixed: $script"
+  fi
+done
+
 # Set permissions for the application inside the dotnet container
 docker exec dotnet-app chown -R deploy:deploy /home/deploy/app
 docker exec dotnet-app chmod -R 755 /home/deploy/app

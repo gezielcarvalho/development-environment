@@ -24,8 +24,15 @@ RUN dotnet dev-certs https --clean && \
     dotnet dev-certs https -ep /usr/local/share/ca-certificates/localhost.pfx -p "$CRT_PASSWORD" && \
     dotnet dev-certs https --trust
 
-# Expose ports for SSH
-EXPOSE 22
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Start the SSH service
-CMD ["/usr/sbin/sshd", "-D"]
+# Expose ports for SSH and HTTP
+EXPOSE 22 5000
+
+# Set working directory
+WORKDIR /home/$SSH_USER/app
+
+# Use custom entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

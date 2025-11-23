@@ -11,4 +11,9 @@ RUN mkdir -p /app && chown -R 1000:1000 /app
 USER 1000:1000
 
 # Default command to keep the container running
-CMD ["bash"]
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Use custom entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

@@ -33,8 +33,27 @@ RUN mkdir /var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install git (required for composer)
+RUN apt-get install -y git
+
+RUN mkdir /var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
+
 RUN a2enmod rewrite 
 
 RUN service apache2 restart
 
 RUN usermod -u 1000 www-data
+
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Use custom entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
